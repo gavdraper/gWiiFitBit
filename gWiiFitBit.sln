@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gWiiFitBit.Lib", "gWiiFitBit.Lib\gWiiFitBit.Lib.csproj", "{BC4E2806-D16B-4DB3-BA49-92BE8F41DC6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gWiiFitBit.FormsApp", "gWiiFitBit.FormsApp\gWiiFitBit.FormsApp.csproj", "{BFDA5C5F-B53C-4C2D-B0B9-CF6946723E89}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC4E2806-D16B-4DB3-BA49-92BE8F41DC6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC4E2806-D16B-4DB3-BA49-92BE8F41DC6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC4E2806-D16B-4DB3-BA49-92BE8F41DC6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC4E2806-D16B-4DB3-BA49-92BE8F41DC6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFDA5C5F-B53C-4C2D-B0B9-CF6946723E89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFDA5C5F-B53C-4C2D-B0B9-CF6946723E89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFDA5C5F-B53C-4C2D-B0B9-CF6946723E89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFDA5C5F-B53C-4C2D-B0B9-CF6946723E89}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
