@@ -48,7 +48,7 @@ namespace gWiiFitBit.FormsApp
         {
             //TODO : on receive Token and token secret store them somewhere so the user does not have to approve
             //access to the FitBit account every time. This needs to be removed from App.Config and is just there
-            //for testing.
+            //for testing. 
 
             var consumerKey = System.Configuration.ConfigurationManager.AppSettings["ConsumerKey"];
             var consumerSecret = System.Configuration.ConfigurationManager.AppSettings["ConsumerSecret"];
