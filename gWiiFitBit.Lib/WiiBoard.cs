@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using WiimoteLib;
@@ -12,9 +13,7 @@ namespace gWiiFitBit.Lib
         const int minWeightKgThreshold = 5;
 
         List<float> weights;
-        volatile bool measuring;
         WiimoteCollection controllers;
-
 
         public delegate void weightChanged(Weight weight);
         public event weightChanged OnWeightChanged;
@@ -23,14 +22,11 @@ namespace gWiiFitBit.Lib
         {
             get
             {
-                var tmpWeights = (from w in weights select w).ToList();
-                for (int i = 0; i < 120; i++)
-                    tmpWeights.Remove(tmpWeights[0]);
-                var unculledAverage = tmpWeights.Average();
-                var threshold = (unculledAverage / 100) * 5;
-                var dodgyWeight = (from w in tmpWeights where Math.Abs(unculledAverage - w) > threshold select w).ToList();
-                var goodAverage = (from w in tmpWeights where !dodgyWeight.Contains(w) select w).Average();
-                return goodAverage;
+                //Remove first 60% of weights as when stepping on they are inaccurate
+                var prunedWeights = (from w in weights select w).Skip(Convert.ToInt32(weightsToTakeBeforeMeasurement * 0.6)).ToList();
+                //Remove any weights more than 5% from average
+                prunedWeights = (from w in prunedWeights where Math.Abs(w - prunedWeights.Average()) < prunedWeights.Average() * 0.5 select w).ToList();
+                return prunedWeights.Average();
             }
         }
 
