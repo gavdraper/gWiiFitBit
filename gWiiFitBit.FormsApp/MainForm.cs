@@ -1,12 +1,8 @@
-﻿using gWiiFitBit.FormsApp.FitBit;
-using gWiiFitBit.Lib;
+﻿using gWiiFitBit.Lib;
 using RestSharp;
 using RestSharp.Authenticators;
-using RestSharp.Contrib;
 using System;
-using System.Diagnostics;
 using System.Threading;
-using System.Web;
 using System.Windows.Forms;
 
 namespace gWiiFitBit.FormsApp

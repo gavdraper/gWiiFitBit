@@ -8,9 +8,14 @@ namespace gWiiFitBit.Lib
 {
     public class WiiBoard : IDisposable
     {
-        private List<float> weights;
-        WiimoteCollection controllers;
+        const int weightsToTakeBeforeMeasurement = 150;
+        const int minWeightKgThreshold = 5;
+
+        List<float> weights;
         volatile bool measuring;
+        WiimoteCollection controllers;
+
+
         public delegate void weightChanged(Weight weight);
         public event weightChanged OnWeightChanged;
 
@@ -66,44 +71,17 @@ namespace gWiiFitBit.Lib
                 Connect();
                 return;
             }
-            try
+            if (e.WiimoteState.ExtensionType == ExtensionType.BalanceBoard)
             {
-                if (e.WiimoteState.ExtensionType == ExtensionType.BalanceBoard)
+                lock (weights)
                 {
-                    lock (weights)
-                    {
-                        if (e.WiimoteState.BalanceBoardState.WeightKg <= 5)
-                        {
-                            weights.Clear();
-                            measuring = false;
-                        }
-                        if (weights.Count == 0 && e.WiimoteState.BalanceBoardState.WeightKg > 5)
-                        {
-                            measuring = true;
-                        }
-
-                        if (measuring)
-                        {
-                            if (e.WiimoteState.BalanceBoardState.WeightKg > 5)
-                            {
-                                weights.Add(e.WiimoteState.BalanceBoardState.WeightKg);
-                            }
-                            if (weights.Count == 150)
-                            {
-                                measuring = false;
-                                if (TotalWeight > 4)
-                                {
-                                    OnWeightChanged(new Weight(TotalWeight));
-                                }
-                            }
-
-                        }
-                    }
+                    if (e.WiimoteState.BalanceBoardState.WeightKg <= minWeightKgThreshold)
+                        weights.Clear();
+                    if (e.WiimoteState.BalanceBoardState.WeightKg > minWeightKgThreshold && weights.Count < weightsToTakeBeforeMeasurement)
+                        weights.Add(e.WiimoteState.BalanceBoardState.WeightKg);
+                    if (weights.Count == weightsToTakeBeforeMeasurement)
+                        OnWeightChanged(new Weight(TotalWeight));
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
             }
         }
 
