@@ -32,6 +32,14 @@ namespace gWiiFitBit.Lib
             }
         }
 
+        public float TotalKg
+        {
+            get
+            {
+                return weight;
+            }
+        }
+
         public Weight(float kg)
         {
             weight = kg;
