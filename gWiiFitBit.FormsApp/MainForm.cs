@@ -1,5 +1,4 @@
-﻿using gWiiFitBit.FormsApp.FitBit;
-using gWiiFitBit.Lib;
+﻿using gWiiFitBit.Lib;
 using RestSharp;
 using RestSharp.Authenticators;
 using System;
