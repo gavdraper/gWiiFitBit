@@ -62,10 +62,8 @@ namespace gWiiFitBit.FormsApp
             var requestUrl = baseUrl + System.Configuration.ConfigurationManager.AppSettings["OAuthRequestURL"];
             var AccessUrl = baseUrl + System.Configuration.ConfigurationManager.AppSettings["OAuthAccessUrl"];
             var authorizeUrl = baseUrl + System.Configuration.ConfigurationManager.AppSettings["OAuthAuthorizeUrl"];
+            
             /*
-
-            Authenticator a = new Authenticator(consumerKey,consumerSecret,requestUrl, AccessUrl,authorizeUrl);
-            a.GetAuthUrlToken();
             var client = new RestClient(baseUrl);
             client.Authenticator = OAuth1Authenticator.ForRequestToken(consumerKey, consumerSecret);
             var request = new RestRequest(requestUrl.Replace(baseUrl,""), Method.POST);
